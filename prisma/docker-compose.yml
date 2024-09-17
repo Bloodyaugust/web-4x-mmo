@@ -1,0 +1,15 @@
+version: '3.9'
+
+services:
+  web-4x-mmo-db:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=localpassword
+      - POSTGRES_DB=web_4x_mmo
+    ports:
+      - '5432:5432'
+    volumes:
+      - db:/data/postgres
+
+volumes:
+ db:

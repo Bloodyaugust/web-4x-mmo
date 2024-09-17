@@ -1,40 +1,30 @@
-# Welcome to Remix!
+# Web-4x-MMO
 
-- 📖 [Remix docs](https://remix.run/docs)
+A lil browser-based 4x MMO game in space.
 
 ## Development
 
-Run the dev server:
+### Environment
 
-```shellscript
-npm run dev
-```
+- `touch .env`
+- Set `DATABASE_URL` with connection params. When using local docker compose, this is `postgresql://postgres:localpassword@localhost:5432/web_4x_mmo?schema=public`.
 
-## Deployment
+### DB Setup
 
-First, build your app for production:
+- `cd prisma`
+- `docker-compose up -d`
+- `cd ../`
+- `npx prisma db seed`
 
-```sh
-npm run build
-```
+### Local web dev
 
-Then run the app in production mode:
+- `npm install`
+- `npm run dev`
 
-```sh
-npm start
-```
+### Prisma
 
-Now you'll need to pick a host to deploy it to.
+To run Prisma Studio:
+`npx prisma studio`
 
-### DIY
-
-If you're familiar with deploying Node applications, the built-in Remix app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-- `build/server`
-- `build/client`
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever css framework you prefer. See the [Vite docs on css](https://vitejs.dev/guide/features.html#css) for more information.
+To update db after Prisma schema changes:
+`npx prisma db push`

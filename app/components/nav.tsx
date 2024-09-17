@@ -8,7 +8,7 @@ export default function Nav() {
     <div className={styles.nav}>
       <NavLink
         className={({ isActive }) => clsx(styles.a, isActive && styles.active)}
-        to="/empires/d92e4a54-0b70-463b-a279-af7d6277a8f6"
+        to="/empires/Big Chungus"
       >
         My Empire
       </NavLink>

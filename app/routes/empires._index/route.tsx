@@ -11,7 +11,7 @@ export default function Empires() {
   return (
     <div className="flex flex-col gap-4">
       {empires.map((empire) => (
-        <Link to={`/empires/${empire.id}`} key={empire.id}>
+        <Link to={`/empires/${empire.name}`} key={empire.id}>
           {empire.name}
         </Link>
       ))}

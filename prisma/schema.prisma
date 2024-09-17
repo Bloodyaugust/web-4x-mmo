@@ -15,7 +15,7 @@ datasource db {
 
 model Empire {
   id        String   @id @default(uuid())
-  name      String
+  name      String   @unique
   turns     Int
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
@@ -24,7 +24,7 @@ model Empire {
 
 model World {
   id        String  @id @default(uuid())
-  name      String
+  name      String  @unique
   locationX Int
   locationY Int
   owner     Empire? @relation(fields: [ownerId], references: [id])
@@ -35,6 +35,6 @@ model World {
 
 model System {
   id     String  @id @default(uuid())
-  name   String
+  name   String  @unique
   worlds World[]
 }

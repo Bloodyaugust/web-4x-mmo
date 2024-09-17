@@ -4,7 +4,7 @@ import { db } from "~/db.server";
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const empire = await db.empire.findUnique({
-    where: { id: params.id },
+    where: { name: params.name },
   });
 
   return empire;
