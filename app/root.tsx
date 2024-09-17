@@ -25,7 +25,7 @@ export const links: LinksFunction = () => [
   },
 ];
 
-export function Layout({ children }: { children: React.ReactNode }) {
+export function Layout() {
   return (
     <html lang="en">
       <head>
@@ -37,7 +37,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body className={styles.body}>
         <Header />
         <Nav />
-        <main className={styles.main}>{children}</main>
+        <main className={styles.main}>
+          <Outlet />
+        </main>
         <ScrollRestoration />
         <Scripts />
       </body>

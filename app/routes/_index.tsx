@@ -1,4 +1,4 @@
-import type { MetaFunction } from "@remix-run/node";
+import { redirect, type MetaFunction } from "@remix-run/node";
 
 export const meta: MetaFunction = () => {
   return [
@@ -7,10 +7,6 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export default function Index() {
-  return (
-    <>
-      <span>Placeholder</span>
-    </>
-  );
+export function loader() {
+  throw redirect("/empires");
 }
