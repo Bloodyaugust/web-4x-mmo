@@ -27,9 +27,9 @@ export default function Nav() {
       </NavLink>
       <NavLink
         className={({ isActive }) => clsx(styles.a, isActive && styles.active)}
-        to="/planets"
+        to="/worlds"
       >
-        Planets
+        Worlds
       </NavLink>
     </div>
   );
