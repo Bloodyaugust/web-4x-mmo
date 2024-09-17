@@ -28,3 +28,18 @@ To run Prisma Studio:
 
 To update db after Prisma schema changes:
 `npx prisma db push`
+
+## Tools
+
+### generate-galaxy
+
+`prisma/tools/generate-galaxy.ts` is a CLI for generating new galaxies. It can be invoked with:
+
+`node --loader ts-node/esm prisma/tools/generate-galaxy.ts generate-galaxy --systems 20 --worlds 4`
+
+There is also a default invocation available in `package.json` as a script, which can be run with `npm run generate-galaxy`.
+
+#### args
+
+- `--systems`: Number of systems to generate
+- `--worlds`: Number of worlds to generate per-system
