@@ -1,0 +1,17 @@
+.body {
+  display: grid;
+  gap: 1rem;
+  grid-template-areas:
+    "header header header header"
+    "nav main main main"
+    "nav main main main"
+    "nav main main main";
+  grid-template-rows: min-content 1fr 1fr 1fr;
+  height: 100vh;
+  padding: 2rem;
+  width: 100vw;
+}
+
+.main {
+  grid-area: main;
+}
