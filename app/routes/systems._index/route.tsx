@@ -26,7 +26,7 @@ export default function Systems() {
   const { count, systems } = useLoaderData<typeof loader>();
 
   return (
-    <div className="grid grid-cols-2 gap-2">
+    <div className="grid grid-cols-2 gap-2 max-h-full overflow-y-auto">
       <div className="col-span-2">
         <TableControls count={count} />
       </div>

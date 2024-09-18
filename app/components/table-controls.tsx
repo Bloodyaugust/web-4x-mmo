@@ -31,7 +31,6 @@ export default function TableControls({ count }: Props) {
       {pages.map((i) => (
         <Link
           to={{
-            pathname: "/systems",
             search: `pageSize=${pageSize}&page=${i}`,
           }}
           key={i}
