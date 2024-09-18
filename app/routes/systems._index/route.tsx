@@ -8,17 +8,40 @@ export async function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url);
   const page = parseInt(url.searchParams.get("page") || "0", 10);
   const pageSize = parseInt(url.searchParams.get("pageSize") || "10", 10);
+  const search = url.searchParams.get("search");
+
+  const systems = await db.system.findMany({
+    skip: page * pageSize,
+    take: pageSize,
+    orderBy: [{ name: "asc" }],
+    include: {
+      worlds: true,
+    },
+    ...(search
+      ? {
+          where: {
+            name: {
+              contains: search,
+            },
+          },
+        }
+      : {}),
+  });
+  const count = await db.system.count({
+    ...(search
+      ? {
+          where: {
+            name: {
+              contains: search,
+            },
+          },
+        }
+      : {}),
+  });
 
   return {
-    count: await db.system.count(),
-    systems: await db.system.findMany({
-      skip: page * pageSize,
-      take: pageSize,
-      orderBy: [{ name: "asc" }],
-      include: {
-        worlds: true,
-      },
-    }),
+    count,
+    systems,
   };
 }
 

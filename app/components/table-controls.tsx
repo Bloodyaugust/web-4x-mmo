@@ -10,10 +10,11 @@ type Props = {
 export default function TableControls({ count }: Props) {
   const [searchParams] = useSearchParams();
   const submit = useSubmit();
-  const { page, pageSize } = useMemo(() => {
+  const { page, pageSize, search } = useMemo(() => {
     return {
       page: parseInt(searchParams.get("page") || "0"),
       pageSize: parseInt(searchParams.get("pageSize") || "10"),
+      search: searchParams.get("search") || "",
     };
   }, [searchParams]);
   const pages = useMemo(() => {
@@ -31,7 +32,7 @@ export default function TableControls({ count }: Props) {
       {pages.map((i) => (
         <Link
           to={{
-            search: `pageSize=${pageSize}&page=${i}`,
+            search: `pageSize=${pageSize}&page=${i}&search=${search}`,
           }}
           key={i}
           className={clsx(page === i && "underline")}
@@ -54,6 +55,16 @@ export default function TableControls({ count }: Props) {
           <option value="100">100</option>
         </select>
         <input type="number" id="page" name="page" value={page} hidden />
+        <span>-</span>
+        <label htmlFor="search">Search</label>
+        <input
+          type="search"
+          id="search"
+          name="search"
+          value={search}
+          onChange={(e) => submit(e.currentTarget.form)}
+          className={styles.search}
+        />
       </Form>
     </div>
   );
