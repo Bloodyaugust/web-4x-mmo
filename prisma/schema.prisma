@@ -13,12 +13,20 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id      String   @id @default(uuid())
+  email   String   @unique
+  empires Empire[]
+}
+
 model Empire {
   id        String   @id @default(uuid())
   name      String   @unique
   turns     Int
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
   worlds    World[]
 }
 

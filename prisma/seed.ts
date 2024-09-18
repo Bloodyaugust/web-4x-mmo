@@ -1,6 +1,24 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 async function main() {
+  const user1 = await prisma.user.upsert({
+    where: {
+      email: "test-user-1@example.com",
+    },
+    create: {
+      email: "test-user-1@example.com",
+    },
+    update: {},
+  });
+  const user2 = await prisma.user.upsert({
+    where: {
+      email: "test-user-2@example.com",
+    },
+    create: {
+      email: "test-user-2@example.com",
+    },
+    update: {},
+  });
   const empire = await prisma.empire.upsert({
     where: {
       name: "Big Chungus",
@@ -8,6 +26,11 @@ async function main() {
     create: {
       name: "Big Chungus",
       turns: 0,
+      user: {
+        connect: {
+          email: user1.email,
+        },
+      },
     },
     update: {},
   });
@@ -18,6 +41,11 @@ async function main() {
     create: {
       name: "Small Chungus",
       turns: 0,
+      user: {
+        connect: {
+          email: user2.email,
+        },
+      },
     },
     update: {},
   });
