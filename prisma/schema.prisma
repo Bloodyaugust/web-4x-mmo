@@ -22,6 +22,7 @@ model Empire {
   userId    String
   user      User     @relation(fields: [userId], references: [id])
   worlds    World[]
+  fleets    Fleet[]
 }
 
 model World {
@@ -39,4 +40,11 @@ model System {
   id     String  @id @default(uuid())
   name   String  @unique
   worlds World[]
+}
+
+model Fleet {
+  id       String  @id @default(uuid())
+  ships    Int
+  empire   Empire? @relation(fields: [empireId], references: [id])
+  empireId String
 }
