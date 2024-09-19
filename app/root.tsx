@@ -14,12 +14,24 @@ import styles from "./root.module.css";
 import Nav from "./components/nav";
 import Header from "./components/header";
 import { authenticator } from "./services/auth.server";
+import { Empire } from "@prisma/client";
+import { db } from "./db.server";
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const user = await authenticator.isAuthenticated(request);
+  let empire: Empire | null = null;
+
+  if (user) {
+    empire = await db.empire.findFirst({
+      where: {
+        userId: user.id,
+      },
+    });
+  }
 
   return json({
     user,
+    empire,
   });
 }
 
@@ -48,7 +60,10 @@ export function Layout() {
       </head>
       <body className={styles.body}>
         <Header user={data?.user || null} />
-        <Nav />
+        <Nav
+          user={data.user}
+          empire={data.empire as unknown as Empire | null}
+        />
         <main className={styles.main}>
           <Outlet />
         </main>
