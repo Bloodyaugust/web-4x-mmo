@@ -54,7 +54,14 @@ export default function TableControls({ count }: Props) {
           <option value="20">20</option>
           <option value="100">100</option>
         </select>
-        <input type="number" id="page" name="page" value={page} hidden />
+        <input
+          type="number"
+          id="page"
+          name="page"
+          value={page}
+          hidden
+          readOnly
+        />
         <span>-</span>
         <label htmlFor="search">Search</label>
         <input
