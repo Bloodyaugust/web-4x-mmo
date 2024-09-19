@@ -67,6 +67,12 @@ export default function Nav({ empire, user }: Props) {
       >
         Worlds
       </NavLink>
+      <NavLink
+        className={({ isActive }) => clsx(styles.a, isActive && styles.active)}
+        to="/fleets"
+      >
+        Fleets
+      </NavLink>
     </div>
   );
 }

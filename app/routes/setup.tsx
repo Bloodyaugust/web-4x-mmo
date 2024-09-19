@@ -46,6 +46,10 @@ export async function action({ request }: ActionFunctionArgs) {
   const newEmpireWorld =
     unownedWorlds[Math.floor(Math.random() * unownedWorlds.length)];
 
+  await db.fleet.create({
+    data: { empire: { connect: { id: newEmpire.id } }, ships: 1 },
+  });
+
   await db.world.update({
     where: {
       id: newEmpireWorld.id,
