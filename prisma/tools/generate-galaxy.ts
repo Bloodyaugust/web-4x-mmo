@@ -34,12 +34,32 @@ const cli = createDefaultCli<CmdData>().addCmd({
         data: {
           name: "Big Chungus",
           turns: 0,
+          user: {
+            connectOrCreate: {
+              where: {
+                email: "test-user-1@example.com",
+              },
+              create: {
+                email: "test-user-1@example.com",
+              },
+            },
+          },
         },
       });
       await prisma.empire.create({
         data: {
           name: "Small Chungus",
           turns: 0,
+          user: {
+            connectOrCreate: {
+              where: {
+                email: "test-user-2@example.com",
+              },
+              create: {
+                email: "test-user-2@example.com",
+              },
+            },
+          },
         },
       });
 
